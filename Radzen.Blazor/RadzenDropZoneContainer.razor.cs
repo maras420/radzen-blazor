@@ -54,6 +54,9 @@ namespace Radzen.Blazor
         [Parameter]
         public EventCallback<RadzenDropZoneItemEventArgs<TItem>> Drop { get; set; }
 
+        [Parameter]
+        public bool AllowVirtualization { get; set; }
+
         internal RadzenDropZoneItemEventArgs<TItem> Payload { get; set; }
 
         /// <inheritdoc />

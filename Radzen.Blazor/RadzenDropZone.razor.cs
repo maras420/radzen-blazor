@@ -33,9 +33,6 @@ namespace Radzen.Blazor
         [CascadingParameter]
         RadzenDropZoneContainer<TItem> Container { get; set; }
 
-        [Parameter]
-        public bool AllowVirtualization { get; set; }
-
         internal Virtualize<TItem> virtualize = default!;
 
         IEnumerable<TItem> Items
@@ -45,7 +42,7 @@ namespace Radzen.Blazor
                 return Container.ItemSelector != null ? Container.Data.Where(i => Container.ItemSelector(i, this)) : Enumerable.Empty<TItem>();
             }
         }
-        private async ValueTask<ItemsProviderResult<TItem>> LoadItems(ItemsProviderRequest request)
+        private ValueTask<ItemsProviderResult<TItem>> LoadItems(ItemsProviderRequest request)
         {
             var top = request.Count;
 
@@ -59,7 +56,7 @@ namespace Radzen.Blazor
         {
             return new RenderFragment(builder =>
             {
-                if (AllowVirtualization)
+                if (Container.AllowVirtualization)
                 {
                     builder.OpenComponent(0, typeof(Virtualize<TItem>));
                     builder.AddAttribute(1, "ItemsProvider", new ItemsProviderDelegate<TItem>(LoadItems));
