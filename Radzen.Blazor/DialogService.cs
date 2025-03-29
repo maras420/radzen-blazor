@@ -457,7 +457,7 @@ namespace Radzen
         public virtual async Task<bool?> Confirm(string message = "Confirm?", string title = "Confirm", ConfirmOptions options = null, CancellationToken? cancellationToken = null)
         {
             // Validate and set default values for the dialog options
-            options ??= new();
+            options ??= new() { OkButtonText = "Ok", CancelButtonText = "Cancel" };
             options.Width = !String.IsNullOrEmpty(options.Width) ? options.Width : ""; // Width is set to 600px by default by OpenAsync
             options.Style = !String.IsNullOrEmpty(options.Style) ? options.Style : "";
             options.CssClass = !String.IsNullOrEmpty(options.CssClass) ? $"rz-dialog-confirm {options.CssClass}" : "rz-dialog-confirm";
@@ -470,7 +470,7 @@ namespace Radzen
                     var i = 0;
                     b.OpenElement(i++, "p");
                     b.AddAttribute(i++, "class", "rz-dialog-confirm-message");
-                    b.AddContent(i++, (MarkupString)message);
+                    b.AddContent(i++, message);
                     b.CloseElement();
 
                     b.OpenElement(i++, "div");
@@ -504,7 +504,7 @@ namespace Radzen
         public virtual async Task<bool?> Alert(string message = "", string title = "Message", AlertOptions options = null, CancellationToken? cancellationToken = null)
         {
             // Validate and set default values for the dialog options
-            options ??= new();
+            options ??= new() { OkButtonText = "Ok" };
             options.Width = !String.IsNullOrEmpty(options.Width) ? options.Width : "";  
             options.Style = !String.IsNullOrEmpty(options.Style) ? options.Style : "";
             options.CssClass = !String.IsNullOrEmpty(options.CssClass) ? $"rz-dialog-alert {options.CssClass}" : "rz-dialog-alert";
@@ -518,7 +518,7 @@ namespace Radzen
                     var i = 0;
                     b.OpenElement(i++, "p");
                     b.AddAttribute(i++, "class", "rz-dialog-alert-message");
-                    b.AddContent(i++, (MarkupString)message);
+                    b.AddContent(i++, message);
                     b.CloseElement();
 
                     b.OpenElement(i++, "div");
