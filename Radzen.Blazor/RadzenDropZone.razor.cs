@@ -42,7 +42,8 @@ namespace Radzen.Blazor
                 return Container.ItemSelector != null ? Container.Data.Where(i => Container.ItemSelector(i, this)) : Enumerable.Empty<TItem>();
             }
         }
-        private ValueTask<ItemsProviderResult<TItem>> LoadItems(ItemsProviderRequest request)
+        
+        private async ValueTask<ItemsProviderResult<TItem>> LoadItems(ItemsProviderRequest request)
         {
             var top = request.Count;
 
@@ -52,6 +53,7 @@ namespace Radzen.Blazor
             
             return new ItemsProviderResult<TItem>(virtualDataItems, totalItemsCount);
         }
+
         RenderFragment DrawDropZoneItems()
         {
             return new RenderFragment(builder =>
