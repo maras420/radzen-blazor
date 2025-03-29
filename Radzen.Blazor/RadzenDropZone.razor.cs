@@ -110,6 +110,20 @@ namespace Radzen.Blazor
             builder.CloseComponent();
         }
 
+        /// <summary>
+        /// Set parameters as an asynchronous operation.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            await base.SetParametersAsync(parameters);
+            if (virtualize != null)
+            {
+                await virtualize.RefreshDataAsync();
+            }
+        }
+
         internal bool CanDrop()
         {
             if (Container.Payload != null)
