@@ -54,6 +54,10 @@ namespace Radzen.Blazor
         [Parameter]
         public EventCallback<RadzenDropZoneItemEventArgs<TItem>> Drop { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is virtualized.
+        /// </summary>
+        /// <value><c>true</c> if this instance is virtualized; otherwise, <c>false</c>.</value>
         [Parameter]
         public bool AllowVirtualization { get; set; }
 
